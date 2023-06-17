@@ -1,8 +1,11 @@
-const express = require('express')
-const app = express();
-const port = 3000;
+const initLibraries = require('./configs/libraries');
+const server = initLibraries();
+const router = require('./routes/index');
+const db = require('./models/connect')
+const PORT = process.env.PORT || 5000;
 
-app.get('/',(req,res) => {
-   res.send("hello world!");
-})
-app.listen(port, () => console.log('listening on port: ' + port));
+router(server);
+
+server.listen(PORT, () => {
+   console.log("Server run at " + PORT);
+});
