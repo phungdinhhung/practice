@@ -1,5 +1,5 @@
 const { Sequelize } = require("sequelize");
-const { POSTGRESQL_DEVELOPMENT_HOST } = require("../configs/db");
+const { POSTGRESQL_DEVELOPMENT_HOST } = require("../../configs/db");
 
 const connect = async () => {
     try {

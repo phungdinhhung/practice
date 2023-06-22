@@ -1,9 +1,12 @@
-const initLibraries = require('./configs/libraries');
+const initLibraries = require("./configs/libraries");
 const server = initLibraries();
-const router = require('./routes/index');
-const db = require('./models/connect')
+const router = require("./routes/index");
+const db = require("./models/postgreSQL/connect");
+const createData = require("./models/index");
 const PORT = process.env.PORT || 5000;
 
+db.connect();
+createData.initAll();
 router(server);
 
 server.listen(PORT, () => {
