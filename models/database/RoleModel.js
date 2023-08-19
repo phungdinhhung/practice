@@ -3,16 +3,20 @@ const { POSTGRESQL_DEVELOPMENT_HOST } = require("../../configs/db");
 const sequelize = new Sequelize(POSTGRESQL_DEVELOPMENT_HOST);
 
 const Role = sequelize.define("role", {
-  roleId: {
-    type: DataTypes.UUID,
-    primaryKey: true,
-  },
-  roleName: {
-    type: DataTypes.STRING(),
-  },
+   roleId: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      allowNull: false,
+   },
+   roleName: {
+      type: DataTypes.STRING(30),
+      unique: true,
+      allowNull: false,
+   },
 });
 const initRole = () => {
-  return Role.sync({ alert: true });
+   return Role.sync({ alert: true });
 };
 
 module.exports = { Role, initRole };
