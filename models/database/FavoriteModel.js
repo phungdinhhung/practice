@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const { POSTGRESQL_DEVELOPMENT_HOST } = require("../../configs/db");
 const sequelize = new Sequelize(POSTGRESQL_DEVELOPMENT_HOST);
 const { User } = require("./UserModel");
-const { Animal } = require("./AnimalModel");
+const { SeaCreature } = require("./SeaCreatureModel");
 
 const Favorite = sequelize.define("favorite", {
    favoriteId: {
@@ -19,18 +19,18 @@ const Favorite = sequelize.define("favorite", {
       },
       primaryKey: true,
    },
-   AnimalId: {
+   SeaCreatureId: {
       type: DataTypes.UUID,
       references: {
-         model: Animal,
-         key: "animalId",
+         model: SeaCreature,
+         key: "seaCreatureId",
       },
       primaryKey: true,
    },
 });
 
-User.belongsToMany(Animal, { through: Favorite, foreignKey: "userId" });
-Animal.belongsToMany(User, { through: Favorite, foreignKey: "animalId" });
+User.belongsToMany(SeaCreature, { through: Favorite, foreignKey: "userId" });
+SeaCreature.belongsToMany(User, { through: Favorite, foreignKey: "seaCreatureId" });
 
 const initFavorite = () => {
    return Favorite.sync({ alert: true });

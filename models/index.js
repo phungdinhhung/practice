@@ -1,7 +1,7 @@
 const { User, initUser } = require("../models/database/UserModel");
 const { Role, initRole } = require("../models/database/RoleModel");
 const { UserRole, initUserRole } = require("../models/database/UserRoleModel");
-const { Animal, initAnimal } = require("../models/database/AnimalModel");
+const { SeaCreature, initSeaCreature } = require("../models/database/SeaCreatureModel");
 const { Comment, initComment } = require("../models/database/CommentModel");
 const { Favorite, initFavorite } = require("../models/database/FavoriteModel");
 const { Suggestion, initSuggestion } = require("../models/database/SuggestionModel");
@@ -10,7 +10,7 @@ const initAll = async () => {
    await initUser()
       .then(async () => {
          await initRole();
-         await initAnimal();
+         await initSeaCreature();
       })
       .then(async () => {
          await initUserRole();
@@ -25,7 +25,7 @@ module.exports = {
    User,
    Role,
    UserRole,
-   Animal,
+   SeaCreature,
    Comment,
    Favorite,
    Suggestion,

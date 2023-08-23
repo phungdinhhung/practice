@@ -2,8 +2,8 @@ const { Sequelize, DataTypes } = require("sequelize");
 const { POSTGRESQL_DEVELOPMENT_HOST } = require("../../configs/db");
 const sequelize = new Sequelize(POSTGRESQL_DEVELOPMENT_HOST);
 
-const Animal = sequelize.define("animal", {
-   animalId: {
+const SeaCreature = sequelize.define("seaCreature", {
+   seaCreatureId: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
@@ -31,8 +31,8 @@ const Animal = sequelize.define("animal", {
    },
 });
 
-const initAnimal = () => {
-   return Animal.sync({ alter: true });
+const initSeaCreature = () => {
+   return SeaCreature.sync({ alter: true });
 };
 
-module.exports = { Animal, initAnimal };
+module.exports = { SeaCreature, initSeaCreature };

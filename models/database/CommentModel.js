@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const { POSTGRESQL_DEVELOPMENT_HOST } = require("../../configs/db");
 const sequelize = new Sequelize(POSTGRESQL_DEVELOPMENT_HOST);
 const { User } = require("./UserModel");
-const { Animal } = require("./AnimalModel");
+const { SeaCreature } = require("./SeaCreatureModel");
 
 const Comment = sequelize.define("comment", {
    commentId: {
@@ -19,11 +19,11 @@ const Comment = sequelize.define("comment", {
       },
       allowNull: false,
    },
-   animalId: {
+   seaCreatureId: {
       type: DataTypes.UUID,
       references: {
-         model: Animal,
-         key: "animalId",
+         model: SeaCreature,
+         key: "seaCreatureId",
       },
       allowNull: false,
    },
@@ -33,8 +33,8 @@ const Comment = sequelize.define("comment", {
    },
 });
 
-User.belongsToMany(Animal, { through: Comment, foreignKey: "userId" });
-Animal.belongsToMany(User, { through: Comment, foreignKey: "animalId" });
+User.belongsToMany(SeaCreature, { through: Comment, foreignKey: "userId" });
+SeaCreature.belongsToMany(User, { through: Comment, foreignKey: "seaCreatureId" });
 
 const initComment = () => {
    return Comment.sync({ alert: true });
